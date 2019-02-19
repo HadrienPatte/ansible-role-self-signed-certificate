@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  role_name: self_signed_certificate
+  author: Hadrien Patte
+  company: ""
+  description: Generate a self-signed TLS/SSL certificate
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions: all
+    - name: Ubuntu
+      versions: all
+  galaxy_tags:
+    - selfsigned
+    - certificate
+    - SSL
+    - TLS
+
+dependencies: []
+...
