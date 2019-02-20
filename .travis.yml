@@ -1,0 +1,22 @@
+---
+services: docker
+
+language: python
+python:
+  - 3.6
+cache: pip
+
+install:
+  - pip install molecule docker
+
+before_script:
+  - cd ..
+  - mv ansible-role-self-signed-certificate hadrienpatte.self_signed_certificate
+  - cd hadrienpatte.self_signed_certificate
+
+script:
+  - molecule test
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+...

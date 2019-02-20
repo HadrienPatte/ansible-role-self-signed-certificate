@@ -1,5 +1,7 @@
 # Ansible Role: Self-signed certificate
 
+[![Build Status](https://travis-ci.com/HadrienPatte/ansible-role-self-signed-certificate.svg?branch=master)](https://travis-ci.com/HadrienPatte/ansible-role-self-signed-certificate)
+
 An Ansible Role that generates a TSL/SSL self-signed certificate.
 
 ## Requirements
