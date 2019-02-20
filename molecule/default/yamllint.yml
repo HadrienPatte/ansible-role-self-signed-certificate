@@ -10,4 +10,5 @@ rules:
     level: error
   line-length:
     level: warning
+    max: 120
 ...

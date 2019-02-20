@@ -1,0 +1,22 @@
+---
+self_signed_certificate_FQDN: example.com
+
+self_signed_certificate_key_path: /etc/ssl/private
+self_signed_certificate_key_type: RSA
+self_signed_certificate_key_size: 4096
+
+self_signed_certificate_csr_path: /etc/ssl/csr
+self_signed_certificate_csr_digest: sha512
+self_signed_certificate_email: admin@{{ self_signed_certificate_FQDN }}
+self_signed_certificate_domains:
+  - "{{ self_signed_certificate_FQDN }}"
+# self_signed_certificate_city:
+# self_signed_certificate_state:
+# self_signed_certificate_country:
+# self_signed_certificate_organisation:
+# self_signed_certificate_organizational_unit:
+
+self_signed_certificate_path: /etc/letsencrypt/live/{{ self_signed_certificate_FQDN }}
+self_signed_certificate_digest: "{{ self_signed_certificate_csr_digest }}"
+self_signed_certificate_days_valid: 3650
+...

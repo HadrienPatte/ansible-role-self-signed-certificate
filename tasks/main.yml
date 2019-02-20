@@ -1,0 +1,55 @@
+---
+- name: Create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0775
+    owner: root
+    group: root
+  loop:
+    - "{{ self_signed_certificate_key_path }}"
+    - "{{ self_signed_certificate_csr_path }}"
+    - "{{ self_signed_certificate_path }}"
+
+- name: Install python OpenSSL
+  apt:
+    name: python-openssl
+    state: present
+  register: apt_result
+  until: apt_result is succeeded
+  retries: 3
+
+- name: Generate OpenSSL private key
+  openssl_privatekey:
+    path: "{{ self_signed_certificate_key_path }}/{{ self_signed_certificate_FQDN }}.pem"
+    type: "{{ self_signed_certificate_key_type }}"
+    size: "{{ self_signed_certificate_key_size }}"
+    state: present
+    mode: 0640
+    group: root
+    owner: root
+
+- name: Generate OpenSSL Certificate Signing Request
+  openssl_csr:
+    path: "{{ self_signed_certificate_csr_path }}/{{ self_signed_certificate_FQDN }}.csr"
+    privatekey_path: "{{ self_signed_certificate_key_path }}/{{ self_signed_certificate_FQDN }}.pem"
+    digest: "{{ self_signed_certificate_csr_digest }}"
+    email_address: "{{ self_signed_certificate_email }}"
+    common_name: "{{ self_signed_certificate_domains | join(',') }}"
+    locality_name: "{{ self_signed_certificate_city | default(omit) }}"
+    state_or_province_name: "{{ self_signed_certificate_state | default(omit) }}"
+    country_name: "{{ self_signed_certificate_country | default(omit) }}"
+    organization_name: "{{ self_signed_certificate_organisation | default(omit) }}"
+    organizational_unit_name: "{{ self_signed_certificate_organizational_unit | default(omit) }}"
+    state: present
+
+- name: Generate self-signed OpenSSL certificate
+  openssl_certificate:
+    path: "{{ self_signed_certificate_path }}/fullchain.pem"
+    privatekey_path: "{{ self_signed_certificate_key_path }}/{{ self_signed_certificate_FQDN }}.pem"
+    csr_path: "{{ self_signed_certificate_csr_path }}/{{ self_signed_certificate_FQDN }}.csr"
+    provider: selfsigned
+    selfsigned_digest: "{{ self_signed_certificate_digest }}"
+    valid_in: "{{ self_signed_certificate_days_valid * 86400 }}"
+    state: present
+...
