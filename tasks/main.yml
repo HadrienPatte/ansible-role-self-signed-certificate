@@ -21,7 +21,7 @@
 
 - name: Generate OpenSSL private key
   openssl_privatekey:
-    path: "{{ self_signed_certificate_key_path }}/{{ self_signed_certificate_FQDN }}.pem"
+    path: "{{ self_signed_certificate_key_path }}/privkey.pem"
     type: "{{ self_signed_certificate_key_type }}"
     size: "{{ self_signed_certificate_key_size }}"
     state: present
@@ -32,7 +32,7 @@
 - name: Generate OpenSSL Certificate Signing Request
   openssl_csr:
     path: "{{ self_signed_certificate_csr_path }}/{{ self_signed_certificate_FQDN }}.csr"
-    privatekey_path: "{{ self_signed_certificate_key_path }}/{{ self_signed_certificate_FQDN }}.pem"
+    privatekey_path: "{{ self_signed_certificate_key_path }}/privkey.pem"
     digest: "{{ self_signed_certificate_csr_digest }}"
     email_address: "{{ self_signed_certificate_email }}"
     common_name: "{{ self_signed_certificate_domains | join(',') }}"
@@ -46,7 +46,7 @@
 - name: Generate self-signed OpenSSL certificate
   openssl_certificate:
     path: "{{ self_signed_certificate_path }}/fullchain.pem"
-    privatekey_path: "{{ self_signed_certificate_key_path }}/{{ self_signed_certificate_FQDN }}.pem"
+    privatekey_path: "{{ self_signed_certificate_key_path }}/privkey.pem"
     csr_path: "{{ self_signed_certificate_csr_path }}/{{ self_signed_certificate_FQDN }}.csr"
     provider: selfsigned
     selfsigned_digest: "{{ self_signed_certificate_digest }}"
