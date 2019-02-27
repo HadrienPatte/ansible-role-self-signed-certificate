@@ -6,7 +6,12 @@ driver:
 lint:
   name: yamllint
   options:
-    config-file: molecule/default/yamllint.yml
+    config-data:
+      extends: default
+      rules:
+        line-length:
+          level: warning
+          max: 100
 platforms:
   - name: instance
     image: debian:stretch
