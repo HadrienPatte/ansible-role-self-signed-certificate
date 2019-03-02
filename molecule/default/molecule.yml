@@ -13,8 +13,10 @@ lint:
           level: warning
           max: 100
 platforms:
-  - name: instance
-    image: debian:stretch
+  - name: debian
+    image: debian
+  - name: fedora
+    image: fedora
 provisioner:
   name: ansible
   lint:

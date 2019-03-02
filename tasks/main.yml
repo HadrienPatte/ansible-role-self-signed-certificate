@@ -11,13 +11,23 @@
     - "{{ self_signed_certificate_csr_path }}"
     - "{{ self_signed_certificate_path }}"
 
-- name: Install python OpenSSL
+- name: Install python OpenSSL on Debian/Ubuntu
   apt:
     name: python-openssl
     state: present
   register: apt_result
   until: apt_result is succeeded
   retries: 3
+  when: ansible_os_family == "Debian"
+
+- name: Install python OpenSSL on Fedora
+  yum:
+    name: pyOpenSSL
+    state: present
+  register: yum_result
+  until: yum_result is succeeded
+  retries: 3
+  when: ansible_os_family == "RedHat"
 
 - name: Generate OpenSSL private key
   openssl_privatekey:

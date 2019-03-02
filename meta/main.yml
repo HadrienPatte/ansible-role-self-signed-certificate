@@ -11,6 +11,8 @@ galaxy_info:
       versions: all
     - name: Ubuntu
       versions: all
+    - name: Fedora
+      version: all
   galaxy_tags:
     - selfsigned
     - certificate
