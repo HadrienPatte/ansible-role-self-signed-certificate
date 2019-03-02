@@ -10,7 +10,7 @@ None.
 
 ## Role Variables
 
-* `self_signed_certificate_FQDN`: your Fully Qualified Domain Name
+* `self_signed_certificate_FQDN`: list of Fully Qualified Domain Names (CN)
 
 ### Private key variables
 
@@ -26,8 +26,6 @@ None.
 * `self_signed_certificate_csr_digest`: certificate signing request digest,
   defaults to `sha512`
 * `self_signed_certificate_email`: certificate signing request email address (E)
-* `self_signed_certificate_domains`: list of domains for the certificate signing
-  request (CN)
 * `self_signed_certificate_city`: certificate signing request locality name (L)
 * `self_signed_certificate_state`: certificate signing request state or province
   name (ST)

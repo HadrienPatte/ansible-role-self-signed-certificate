@@ -11,7 +11,7 @@ lint:
       rules:
         line-length:
           level: warning
-          max: 100
+          max: 120
 platforms:
   - name: debian
     image: debian

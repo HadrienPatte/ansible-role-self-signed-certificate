@@ -41,11 +41,11 @@
 
 - name: Generate OpenSSL Certificate Signing Request
   openssl_csr:
-    path: "{{ self_signed_certificate_csr_path }}/{{ self_signed_certificate_FQDN }}.csr"
+    path: "{{ self_signed_certificate_csr_path }}/{{ self_signed_certificate_FQDN | first }}.csr"
     privatekey_path: "{{ self_signed_certificate_key_path }}/privkey.pem"
     digest: "{{ self_signed_certificate_csr_digest }}"
     email_address: "{{ self_signed_certificate_email }}"
-    common_name: "{{ self_signed_certificate_domains | join(',') }}"
+    common_name: "{{ self_signed_certificate_FQDN | join(',') }}"
     locality_name: "{{ self_signed_certificate_city | default(omit) }}"
     state_or_province_name: "{{ self_signed_certificate_state | default(omit) }}"
     country_name: "{{ self_signed_certificate_country | default(omit) }}"
@@ -57,7 +57,7 @@
   openssl_certificate:
     path: "{{ self_signed_certificate_path }}/fullchain.pem"
     privatekey_path: "{{ self_signed_certificate_key_path }}/privkey.pem"
-    csr_path: "{{ self_signed_certificate_csr_path }}/{{ self_signed_certificate_FQDN }}.csr"
+    csr_path: "{{ self_signed_certificate_csr_path }}/{{ self_signed_certificate_FQDN | first }}.csr"
     provider: selfsigned
     selfsigned_digest: "{{ self_signed_certificate_digest }}"
     valid_in: "{{ self_signed_certificate_days_valid * 86400 }}"
