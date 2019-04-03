@@ -2,5 +2,5 @@
 - name: Converge
   hosts: all
   roles:
-    - role: hadrienpatte.self_signed_certificate
+    - hadrienpatte.self_signed_certificate
 ...

@@ -1,6 +1,7 @@
 ---
 self_signed_certificate_FQDN:
-  - example.com
+  - a.example.com
+  - b.example.com
 
 self_signed_certificate_key_path: /etc/ssl/private/{{ self_signed_certificate_FQDN | first }}
 self_signed_certificate_key_type: RSA
