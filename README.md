@@ -40,8 +40,8 @@ None.
 
 * `self_signed_certificate_path`: directory where the certificate will be
 * `self_signed_certificate_digest`: certificate digest, defaults to `sha512`
-* `self_signed_certificate_days_valid`: number of days the certificate will be
-  valid, defaults to `3650` (ten years)
+* `self_signed_certificate_not_after`: the point in time at which the
+  certificate stops being valid, defaults to `+3650d` (ten years)
 
 # Dependencies
 

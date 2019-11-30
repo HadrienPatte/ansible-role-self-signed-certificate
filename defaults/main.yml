@@ -18,5 +18,5 @@ self_signed_certificate_email: admin@{{ self_signed_certificate_FQDN | first }}
 
 self_signed_certificate_path: "{{ self_signed_certificate_key_path }}"
 self_signed_certificate_digest: "{{ self_signed_certificate_csr_digest }}"
-self_signed_certificate_days_valid: 3650
+self_signed_certificate_not_after: "+3650d"
 ...

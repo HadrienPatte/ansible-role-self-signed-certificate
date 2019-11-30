@@ -61,6 +61,6 @@
     csr_path: "{{ self_signed_certificate_csr_path }}/{{ self_signed_certificate_FQDN | first }}.csr"
     provider: selfsigned
     selfsigned_digest: "{{ self_signed_certificate_digest }}"
-    valid_in: "{{ self_signed_certificate_days_valid * 86400 }}"
+    selfsigned_not_after: "{{ self_signed_certificate_not_after }}"
     state: present
 ...
