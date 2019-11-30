@@ -22,7 +22,7 @@
 
 - name: Install python OpenSSL on Fedora
   yum:
-    name: pyOpenSSL
+    name: python-cryptography
     state: present
   register: yum_result
   until: yum_result is succeeded
