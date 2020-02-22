@@ -13,7 +13,7 @@
 
 - name: Install python OpenSSL on Debian/Ubuntu
   apt:
-    name: python-openssl
+    name: python3-openssl
     state: present
   register: apt_result
   until: apt_result is succeeded
