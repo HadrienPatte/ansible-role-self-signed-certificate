@@ -13,7 +13,7 @@
 
 - name: Install python OpenSSL on Debian/Ubuntu
   apt:
-    name: python3-openssl
+    name: python{{ "3" if ansible_python.version.major == 3 }}-openssl
     state: present
   register: apt_result
   until: apt_result is succeeded
@@ -22,7 +22,7 @@
 
 - name: Install python OpenSSL on Fedora
   yum:
-    name: python-cryptography
+    name: python{{ "3" if ansible_python.version.major == 3 }}-cryptography
     state: present
   register: yum_result
   until: yum_result is succeeded

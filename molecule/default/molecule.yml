@@ -2,6 +2,8 @@
 platforms:
   - name: debian
     image: debian
+  - name: ubuntu
+    image: ubuntu
   - name: fedora
     image: fedora
 verifier:
